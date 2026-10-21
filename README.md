@@ -69,6 +69,19 @@ Run `gbooks-harvest --help` to see every option.
 
 Each combination of filter, print type, and sort order is one query variant. The defaults give 9 variants.
 
+## Web app
+
+The `web/` folder holds a browser version with the same logic and the same output files, for people who prefer not to use the terminal. It runs entirely in the browser, so each user enters their own API key, and that key goes only from their browser to Google. Nothing is stored on a server.
+
+To deploy it on Vercel
+
+1. Import this repository at [vercel.com/new](https://vercel.com/new).
+2. Set **Root Directory** to `web`.
+3. Leave the framework preset as **Other**, with no build command.
+4. Select Deploy, then share the address Vercel gives you.
+
+Every push to the main branch redeploys the site automatically. To try it locally, open `web/index.html` in a browser.
+
 ## Output
 
 | File | Contents |
