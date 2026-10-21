@@ -10,6 +10,18 @@ For any search, it
 - writes PRISMA-style counts for identification and screening
 - saves every raw API response with timestamps as an audit trail
 
+## Web app
+
+A browser version of the same harvest lives in `public/` and is meant to be hosted on Vercel so the project group can run searches from a URL. It writes the same CSV and JSON files as the command-line tool.
+
+```bash
+cp .env.example .env.local   # add GOOGLE_BOOKS_API_KEY, optional ACCESS_CODE
+npm run local                # http://127.0.0.1:4173
+npm test
+```
+
+To publish: create a Vercel project from this repository, set `GOOGLE_BOOKS_API_KEY` (and optionally `ACCESS_CODE`) in the project environment, and share the production URL. Restrict the key to the Books API. Do not add HTTP-referrer restrictions; the key is used on the server.
+
 ## Installation
 
 Requires Python 3.9 or later.

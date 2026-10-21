@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Books Harvest</title>
+  <meta name="description" content="Harvest bibliographic records from the Google Books API with a transparent, PRISMA-style record of every step.">
+  <link rel="stylesheet" href="/css/app.css?v=17">
+</head>
+<body>
+  <a class="skip" href="#query">Skip to search</a>
+  <header class="site-header">
+    <div class="wrap">
+      <p class="eyebrow">Bibliographic harvesting</p>
+      <h1>Google Books Harvest</h1>
+      <p class="lede">
+        Search Google Books and read matching pages in the table.
+      </p>
+      <p class="credit">Developed by Farnaz Avarzamani Ph.D.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel how-to" aria-labelledby="how-heading">
+      <h2 id="how-heading">How to use</h2>
+      <ol>
+        <li>Type a word or phrase, then click <strong>Run harvest</strong>.</li>
+        <li>When the table appears, click <strong>Show full paragraph</strong> on a row to open that book page.</li>
+        <li>In the preview <strong>Search</strong> box, type the phrase in quotation marks to find the exact phrase.</li>
+        <li>Click <strong>Download table</strong> to save the results as a spreadsheet.</li>
+      </ol>
+    </section>
+
+    <form id="harvest-form" novalidate>
+      <section class="panel" aria-labelledby="search-heading">
+        <h2 id="search-heading">Search</h2>
+        <label for="query">Query</label>
+        <input id="query" name="query" type="text" required autocomplete="off"
+               placeholder="Enter words or a phrase">
+        <p class="hint">Type the words or phrase you want to search. Exact phrase is on by default.</p>
+
+        <label class="check">
+          <input id="exact" name="exact" type="checkbox" checked>
+          Exact phrase
+        </label>
+
+        <div class="grid-2">
+          <div>
+            <label for="start">Earliest year</label>
+            <input id="start" name="start" type="number" inputmode="numeric" placeholder="Optional">
+          </div>
+          <div>
+            <label for="end">Latest year</label>
+            <input id="end" name="end" type="number" inputmode="numeric" placeholder="Optional">
+          </div>
+        </div>
+        <p class="hint">Leave years blank to include all publication years.</p>
+
+        <label for="lang">Language</label>
+        <input id="lang" name="lang" type="text" value="en" maxlength="12">
+        <p class="hint">Use <code>none</code> for every language.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="variants-heading">
+        <h2 id="variants-heading">Query variants</h2>
+        <p class="hint" id="variant-count">9 variants with the default boxes.</p>
+
+        <fieldset>
+          <legend>Viewability filters</legend>
+          <label class="check"><input type="checkbox" name="filters" value="none" checked> No filter</label>
+          <label class="check"><input type="checkbox" name="filters" value="full" checked> Full view</label>
+          <label class="check"><input type="checkbox" name="filters" value="partial" checked> Partial view</label>
+          <label class="check"><input type="checkbox" name="filters" value="free-ebooks"> Free ebooks</label>
+          <label class="check"><input type="checkbox" name="filters" value="ebooks"> Ebooks</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Print types</legend>
+          <label class="check"><input type="checkbox" name="print-types" value="all" checked> All</label>
+          <label class="check"><input type="checkbox" name="print-types" value="books" checked> Books</label>
+          <label class="check"><input type="checkbox" name="print-types" value="magazines" checked> Magazines</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Sort order</legend>
+          <label class="check"><input type="checkbox" name="order-by" value="relevance" checked> Relevance</label>
+          <label class="check"><input type="checkbox" name="order-by" value="newest"> Newest</label>
+        </fieldset>
+      </section>
+
+      <div id="access-row" hidden>
+        <label for="access-code">Access code</label>
+        <input id="access-code" name="access-code" type="password" autocomplete="off">
+      </div>
+      <div id="key-row" hidden>
+        <label for="user-key">Your Google Books API key</label>
+        <input id="user-key" name="user-key" type="password" autocomplete="off">
+        <p class="hint">Paste a key if the shared daily quota has run out.</p>
+      </div>
+      <p id="key-warning" class="warn" hidden>
+        No shared API key is configured. Requests will use Google’s anonymous
+        limits unless you paste your own key.
+      </p>
+
+      <div class="actions">
+        <button id="run" type="submit">Run harvest</button>
+      </div>
+      <p id="run-status" class="warn" hidden></p>
+    </form>
+
+    <div id="loading" class="loading" hidden>
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="sr-only" aria-live="polite">Loading</p>
+      <button id="stop" type="button">Stop</button>
+    </div>
+
+    <section id="results" class="panel" hidden>
+      <h2>Results</h2>
+      <p id="stopped-note" class="warn" hidden></p>
+      <div id="counts"></div>
+      <p id="match-status" class="hint" hidden></p>
+      <div class="results-toolbar">
+        <div id="result-tabs" class="tabs" role="tablist" aria-label="Result categories"></div>
+        <div class="table-actions">
+          <button id="download-table" type="button">Download table</button>
+          <details class="export">
+            <summary>More files</summary>
+            <div class="actions">
+              <button id="download-zip" type="button">Download zip</button>
+              <button id="download-csv" type="button" class="secondary">Download harvest CSV</button>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div id="preview-groups"></div>
+      <nav id="pager" class="pager" aria-label="Results pages" hidden></nav>
+    </section>
+
+  </main>
+  <script type="module" src="/js/app.js?v=17"></script>
+</body>
+</html>
