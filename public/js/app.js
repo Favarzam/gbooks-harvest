@@ -21,7 +21,6 @@ const resultTabs = document.getElementById("result-tabs");
 const pager = document.getElementById("pager");
 const variantCount = document.getElementById("variant-count");
 const accessRow = document.getElementById("access-row");
-const keyRow = document.getElementById("key-row");
 const keyWarning = document.getElementById("key-warning");
 const downloadTable = document.getElementById("download-table");
 const downloadZip = document.getElementById("download-zip");
@@ -85,10 +84,8 @@ async function loadStatus() {
     accessRow.hidden = !data.accessCodeRequired;
     browserKey = data.browserKey || null;
     const hasKey = Boolean(data.sharedKeyConfigured || document.getElementById("user-key").value.trim());
-    keyRow.hidden = hasKey;
     keyWarning.hidden = hasKey;
   } catch {
-    keyRow.hidden = false;
     keyWarning.hidden = false;
   }
 }

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Google Books Harvest</title>
   <meta name="description" content="Harvest bibliographic records from the Google Books API with a transparent, PRISMA-style record of every step.">
-  <link rel="stylesheet" href="/css/app.css?v=17">
+  <link rel="stylesheet" href="/css/app.css?v=18">
 </head>
 <body>
   <a class="skip" href="#query">Skip to search</a>
@@ -92,10 +92,10 @@
         <label for="access-code">Access code</label>
         <input id="access-code" name="access-code" type="password" autocomplete="off">
       </div>
-      <div id="key-row" hidden>
-        <label for="user-key">Your Google Books API key</label>
+      <div id="key-row">
+        <label for="user-key">Your Google Books API key (optional)</label>
         <input id="user-key" name="user-key" type="password" autocomplete="off">
-        <p class="hint">Paste a key if the shared daily quota has run out.</p>
+        <p class="hint">Leave this blank to use the shared key. Paste your own if searches fail from your network or the daily quota has run out.</p>
       </div>
       <p id="key-warning" class="warn" hidden>
         No shared API key is configured. Requests will use Google’s anonymous
@@ -137,6 +137,6 @@
     </section>
 
   </main>
-  <script type="module" src="/js/app.js?v=17"></script>
+  <script type="module" src="/js/app.js?v=18"></script>
 </body>
 </html>
