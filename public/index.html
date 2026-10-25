@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Google Books Harvest</title>
   <meta name="description" content="Harvest bibliographic records from the Google Books API with a transparent, PRISMA-style record of every step.">
-  <link rel="stylesheet" href="/css/app.css?v=19">
+  <link rel="stylesheet" href="/css/app.css?v=20">
 </head>
 <body>
   <a class="skip" href="#query">Skip to search</a>
@@ -95,7 +95,7 @@
 
       <section class="panel" aria-labelledby="key-heading">
         <h2 id="key-heading">Your API key (optional)</h2>
-        <p class="hint">Leave this blank to use the shared key. Paste your own Google Books API key if you do not want to use mine.</p>
+        <p class="hint">Leave this blank to use the shared key. The shared key has a daily request limit; paste your own if that limit has been reached.</p>
         <div id="key-row">
           <label for="user-key">Google Books API key</label>
           <input id="user-key" name="user-key" type="password" autocomplete="off" placeholder="Optional">
@@ -141,6 +141,6 @@
     </section>
 
   </main>
-  <script type="module" src="/js/app.js?v=19"></script>
+  <script type="module" src="/js/app.js?v=20"></script>
 </body>
 </html>
